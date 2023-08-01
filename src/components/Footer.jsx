@@ -12,9 +12,9 @@ function Footer() {
         <div>
           <h3 className="font-bold">Quick links</h3>
           <ul>
-            <li className="hover:text-green-600">Home</li>
-            <li className="hover:text-green-600">AboutUs</li>
-            <li className="hover:text-green-600">Search</li>
+            <li className="hover:text-green-600 cursor-pointer">Home</li>
+            <li className="hover:text-green-600 cursor-pointer">AboutUs</li>
+            <li className="hover:text-green-600 cursor-pointer">Search</li>
           </ul>
         </div>
         <div>
