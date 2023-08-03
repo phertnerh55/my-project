@@ -1,7 +1,19 @@
+import { useState, useEffect, useContext } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { StateContext } from "../context/state";
+
+
+
 
 function Nav() {
+
+  
+  const {cart, setCart} =useContext (StateContext)
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cart"));
+    cartItems && setCart(cartItems);
+  }, []);
   return (
     <div className=" flex justify-between p-2">
       <div className="flex gap-5 items-center">
@@ -25,9 +37,13 @@ function Nav() {
         </Link>
       </div>
       <div className="flex gap-5 items-center relative">
-        <div className="rounded-full bg-green-400 w-7 h-7 border-2 absolute bottom-7 left-5 text-center">
-          1
-        </div>
+        {cart.length > 0 && (
+          <div className="rounded-full bg-green-400 w-7 h-7 border-2 absolute bottom-7 left-5 text-center">
+            {cart.length}
+          </div>
+        )
+      
+     }
 
         <Link to={"/cart"}>
           {" "}

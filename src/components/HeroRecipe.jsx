@@ -1,5 +1,6 @@
 import pancake from "../assets/images/pancakes.jpg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { StateContext } from "../context/state";
 import { useEffect, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
@@ -40,7 +41,7 @@ function HeroRecipe() {
 
             <input
               type="search"
-              placeholder="Search for a disease"
+              placeholder="Search for a recipe"
               className="outline-0 w-[100%] "
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -72,7 +73,7 @@ function HeroRecipe() {
         <div className="grid grid-cols-3 gap-3">
           {recipe.map((item) => {
             if (
-              item.foodName.toLowerCase().includes(searchTerm.toLowerCase()) && item.mealTime.toLowerCase().includes(filterTerm)
+              item.foodName && item.foodName.toLowerCase().includes(searchTerm.toLowerCase()) && item.mealTime && item.mealTime.toLowerCase().includes(filterTerm)
             ) {
               
 
@@ -112,9 +113,9 @@ function HeroRecipe() {
                     </div>
 
                     <div className="flex justify-center">
-                      <button className="bg-green-600 text-white p-2 rounded  w-[70%] font-bold text-center text-2xl hover:text-green-800 my-2">
+                      <Link to={`/recipe/${item.foodName.toLowerCase().split(" ").join("-")}`}><button className="bg-green-600 text-white p-2 rounded  w-[70%] font-bold text-center text-2xl hover:text-green-800 my-2">
                         View recipe
-                      </button>
+                      </button></Link>
                     </div>
                   </div>
                 </div>

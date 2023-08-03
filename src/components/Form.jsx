@@ -129,7 +129,7 @@ function Form() {
           <input
             type="text"
             placeholder="Food Name"
-            className="outline-0 p-7 bg-transparent "
+            className="outline-0 p-7 bg-transparent w-[100%] "
             name="foodName"
             onChange={(e) => handleChange(e)}
           />
