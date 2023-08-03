@@ -1,7 +1,7 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
 import {Link} from "react-router-dom";
-// import {googleAuth} from "../auth";
+
 
 function SignHero() {
   const [show, setShow] = useState(false);
@@ -31,9 +31,9 @@ function SignHero() {
     console.log(errors);
     console.log(formData);
   }
-//   function handleGoogleAuth(){
-//   googleAuth();
-//   }
+  function handleGoogleAuth(){
+  googleAuth();
+  }
   return (
     <div>
       <div className="flex justify-end bg-[url(assets/images/bg-signup.jpg)] bg-center bg-origin-border bg-cover h-[145vh]">
