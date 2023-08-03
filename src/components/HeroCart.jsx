@@ -54,7 +54,7 @@ function HeroCart() {
           </div>
         </div>
         <div className="w-[50%] mx-[1em]">
-          <button className=" p-7 bg-green-300 text-black rounded-full shadow font-bold text-center text-[2rem] my-[1em] w-[100%]">
+          <button className=" p-7 bg-green-500 text-white rounded-full shadow font-bold text-center text-[2rem] my-[1em] w-[100%] hover:text-green-800">
             Checkout
           </button>
         </div>
