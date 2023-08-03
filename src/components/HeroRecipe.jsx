@@ -47,24 +47,21 @@ function HeroRecipe() {
           </div>
           <div className="flex justify-around items-center shadow border-gray-300  border-2 w-[60%] rounded-full mx-5 my-2 p-2">
             <div
-              className="border-black"
-              //   onClick={() => filterResult("All")}
+              className="border-black cursor-pointer"
+              onClick={() => setFilterTerm("breakfast")}
             >
-              All
-            </div>
-            <div className="border-black">
-              <div className="w-[70px] h-[70px]">
+                          <div className="w-[70px] h-[70px]">
                 <img src={breakfast} alt="" className="w-[100%] h-[100%]" />
               </div>
               <p> BreakFast</p>
             </div>
-            <div className="border-black">
+            <div className="border-black cursor-pointer"  onClick={() => setFilterTerm("lunch") }>
               <div className="w-[70px] h-[70px]">
                 <img src={lunch} alt="" className="w-[100] h-[100%]" />
               </div>
               <p>Lunch</p>
             </div>
-            <div className="border-black">
+            <div className="border-black cursor-pointer"  onClick={() => setFilterTerm("dinner")}>
               <div className="w-[70px] h-[70px]">
                 <img src={dinner} alt="" className="w-[100%] h-[100%]" />
               </div>
@@ -75,8 +72,12 @@ function HeroRecipe() {
         <div className="grid grid-cols-3 gap-3">
           {recipe.map((item) => {
             if (
-              item.foodName.toLowerCase().includes(searchTerm.toLowerCase())
+              item.foodName.toLowerCase().includes(searchTerm.toLowerCase()) && item.mealTime.toLowerCase().includes(filterTerm)
             ) {
+              
+
+            
+
               return (
                 <div className=" mx-auto my-[2em]">
                   <div className="border-black shadow rounded p-1 ">
