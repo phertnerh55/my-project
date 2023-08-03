@@ -10,12 +10,12 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineStar } from "react-icons/ai";
-import {BsCurrencyDollar} from "react-icons/bs"
+import { BsCurrencyDollar } from "react-icons/bs";
 
 function HeroRecipe() {
   const { recipe, setRecipe } = useContext(StateContext);
-  const [searchTerm,setSearchTerm]=useState()
-  const [filterTerm,setFilterTerm]=useState()
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterTerm, setFilterTerm] = useState("");
   useEffect(() => {
     (async function () {
       const q = query(collection(db, "recipe"));
@@ -28,7 +28,6 @@ function HeroRecipe() {
       });
     })();
   }, []);
-  
 
   return (
     <div className="mx-auto container border-2 shadow-[0_0_12px_rgba(211,211,211)] ">
@@ -40,9 +39,10 @@ function HeroRecipe() {
             <BsSearch size={35} className="text-gray-400" />
 
             <input
-              type="text"
+              type="search"
               placeholder="Search for a disease"
-              className="outline-0 "
+              className="outline-0 w-[100%] "
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <div className="flex justify-around items-center shadow border-gray-300  border-2 w-[60%] rounded-full mx-5 my-2 p-2">
@@ -74,49 +74,51 @@ function HeroRecipe() {
         </div>
         <div className="grid grid-cols-3 gap-3">
           {recipe.map((item) => {
-            return (
-              <div className=" mx-auto my-[2em]">
-                <div className="border-black shadow rounded p-1 ">
-                <div className="w-[400px] h-[200px] ">
-                  <img
-                    src={item.recipeImage}
-                    alt=""
-                    className="w-[100%] h-[100%] object-fill"
-                  />
-                </div>
-                  <h2 className="font-bold text-2xl text-green-800 my-2em">
-                    {item.foodName}
-                  </h2>
-                  <p className="">{item.shortDescription}</p>
+            if (
+              item.foodName.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return (
+                <div className=" mx-auto my-[2em]">
+                  <div className="border-black shadow rounded p-1 ">
+                    <div className="w-[400px] h-[200px] ">
+                      <img
+                        src={item.recipeImage}
+                        alt=""
+                        className="w-[100%] h-[100%] object-fill"
+                      />
+                    </div>
+                    <h2 className="font-bold text-2xl text-green-800 my-2em">
+                      {item.foodName}
+                    </h2>
+                    <p className="">{item.shortDescription}</p>
 
-                  <div>
-                    <div className="  w-[60%] ">
-                      <div className="flex gap-5 my-2 items-center">
-                        <BiTimeFive size={25} />
-                        <p className="">{item.mealTime}</p>
-                      </div>
-                      <div className="flex  my-2 gap-5 items-center">
-                        <AiOutlineStar size={25}  />
+                    <div>
+                      <div className="  w-[60%] ">
+                        <div className="flex gap-5 my-2 items-center">
+                          <BiTimeFive size={25} />
+                          <p className="">{item.mealTime}</p>
+                        </div>
+                        <div className="flex  my-2 gap-5 items-center">
+                          <AiOutlineStar size={25} />
 
-                        <p className="">{item.diseaseName}</p>
-                      </div>
-                      <div className="flex  my-2 gap-5 items-center">
-                        <BsCurrencyDollar size={25} />
-                        <p className="">
-                          {item.price }
-                        </p>
+                          <p className="">{item.diseaseName}</p>
+                        </div>
+                        <div className="flex  my-2 gap-5 items-center">
+                          <BsCurrencyDollar size={25} />
+                          <p className="">{item.price}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="flex justify-center">
-                    <button className="bg-green-600 text-white p-2 rounded  w-[70%] font-bold text-center text-2xl hover:text-green-800 my-2">
-                      View recipe
-                    </button>
+                    <div className="flex justify-center">
+                      <button className="bg-green-600 text-white p-2 rounded  w-[70%] font-bold text-center text-2xl hover:text-green-800 my-2">
+                        View recipe
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
         </div>
       </div>
