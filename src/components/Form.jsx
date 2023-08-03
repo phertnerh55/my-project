@@ -2,40 +2,47 @@ import { useState } from "react";
 import { getStorage, ref, uploadString } from "firebase/storage";
 import { app } from "../firebase";
 import loaderImg from "../assets/images/loader.gif";
-import { collection, addDoc, getDocs,getFirestore } from "firebase/firestore";
-
+import { collection, addDoc, getDocs, getFirestore } from "firebase/firestore";
 
 function Form() {
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const [loader, setLoader] = useState(true);
-const db =getFirestore(app)
+  const db = getFirestore(app);
   const storage = getStorage(app);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleForm = async(e) => {
+  const handleForm = async (e) => {
     e.preventDefault(e);
     const errors = {};
-    (formData.file === "") &&
-      (errors.file = "This field is required");
+   ( formData.file === "") && (errors.file = "This field is required");
     (formData.foodName === undefined || formData.foodName === "") &&
       (errors.foodName = "This field is required");
+      (formData.diseaseName === undefined ||
+        formData.diseaseName === "") &&
+        (errors.diseaseName = "This field is required");
+        (formData.mealTime === undefined ||
+          formData.mealTime === "") &&
+          (errors.mealTime = "This field is required");
     (formData.price === undefined || formData.price === "") &&
       (errors.price = "This field is required");
-    (formData.shortDescription === undefined || formData.shortDescription === "") &&
+    (formData.shortDescription === undefined ||
+      formData.shortDescription === "") &&
       (errors.shortDescription = "This field is required");
     (formData.addIngredients === undefined || formData.addIngredients === "") &&
       (errors.addIngredients = "This field is required");
-    (formData.addInstructions === undefined || formData.addInstructions === "") &&
+    (formData.addInstructions === undefined ||
+      formData.addInstructions === "") &&
       (errors.addInstructions = "This field is required");
+      
 
     setFormErrors(errors);
 
     await addDoc(collection(db, "recipe"), formData);
     console.log("Document written");
-    console.log("added sucssefully")
+    console.log("added sucssefully");
   };
 
   // Upload to Firebase Storage
@@ -54,14 +61,11 @@ const db =getFirestore(app)
         setLoader(true);
         setFormData((prev) => ({
           ...prev,
-          recipeImage: `https://firebasestorage.googleapis.com/v0/b/sick2strong-b7f85.appspot.com/o/recipe%2F${file.name}?alt=media`,
+          recipeImage: `https://firebasestorage.googleapis.com/v0/b/recipe-app-5cac6.appspot.com/o/recipe%2F${file.name}?alt=media`,
         }));
       });
     };
     reader.readAsDataURL(file);
-
-
- 
   }
 
   return (
@@ -80,10 +84,41 @@ const db =getFirestore(app)
             onChange={(e) => handleImageUpload(e)}
           />
           {loader ? (
-            <img src={formData.recipeImage && formData.recipeImage}  className="w-[150px] h-[100px]"/>
+            <img
+              src={formData.recipeImage && formData.recipeImage}
+              className="w-[150px] h-[100px]"
+            />
           ) : (
             <img src={loaderImg} alt="" />
           )}
+        </div>
+      </div>
+      <div className="my-[2em]">
+      {formErrors.diseaseName && (
+        <p className="text-red-500 text-center">{formErrors.diseaseName}</p>
+      )}
+      <div className=" shadow border-gray-300  border-2 w-[80%] rounded mx-auto ">
+        <input
+          type="text"
+          placeholder="Disease Name"
+          className="outline-0 p-7 bg-transparent "
+          name="diseaseName"
+          onChange={(e) => handleChange(e)}
+        />
+        </div>
+      </div>
+      <div className="my-[2em]">
+      {formErrors.mealTime && (
+        <p className="text-red-500 text-center">{formErrors.mealTime}</p>
+      )}
+      <div className=" shadow border-gray-300  border-2 w-[80%] rounded mx-auto ">
+        <input
+          type="text"
+          placeholder="Time to take your meal"
+          className="outline-0 p-7 bg-transparent "
+          name="mealTime"
+          onChange={(e) => handleChange(e)}
+        />
         </div>
       </div>
       <div className="my-[2em]">
@@ -107,10 +142,10 @@ const db =getFirestore(app)
           </p>
         )}
         <div className=" shadow border-gray-300  border-2 w-[80%] rounded mx-auto ">
-          <input
-            type="text"
+          <textarea
+            type="textarea"
             placeholder="Short Description"
-            className="outline-0 p-7 bg-transparent "
+            className="outline-0 p-7 bg-transparent w-[100%] "
             name="shortDescription"
             onChange={(e) => handleChange(e)}
           />
@@ -137,10 +172,10 @@ const db =getFirestore(app)
           </p>
         )}
         <div className=" shadow border-gray-300  border-2 w-[80%] rounded mx-auto ">
-          <input
-            type="textarea"
+          <textarea
+            type="textarea "
             placeholder="Add Ingredients"
-            className="outline-0 p-7 bg-transparent "
+            className="outline-0 p-7 bg-transparent w-[100%] "
             name="addIngredients"
             onChange={(e) => handleChange(e)}
           />
@@ -153,10 +188,10 @@ const db =getFirestore(app)
           </p>
         )}
         <div className=" shadow border-gray-300  border-2 w-[80%] rounded mx-auto ">
-          <input
+          <textarea
             type="textarea"
             placeholder="Add Instructions"
-            className="outline-0 p-7 bg-transparent "
+            className="outline-0 p-7 bg-transparent w-[100%]  "
             name="addInstructions"
             onChange={(e) => handleChange(e)}
           />
