@@ -1,14 +1,14 @@
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import ContentHome from "../components/ContentHome";
-function Home() {
+import HeroRecipe from "../components/HeroRecipe";
+
+function Recipe() {
   return (
     <div>
       <Nav />
-      <ContentHome/>
-
+      <HeroRecipe/>
       <Footer />
     </div>
   );
 }
-export default Home;
+export default Recipe;
