@@ -3,8 +3,9 @@ export const StateContext = createContext();
 
 function StateProvider({ children }) {
   const [recipe, setRecipe] = useState([]);
+  const [cart, setCart] = useState([]);
   return(
-  <StateContext.Provider value={{ recipe, setRecipe }}>
+  <StateContext.Provider value={{ recipe, setRecipe, cart, setCart }}>
     {children}
   </StateContext.Provider>
   )

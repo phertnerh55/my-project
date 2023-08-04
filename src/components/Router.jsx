@@ -8,6 +8,7 @@ import AddForm from "../pages/AddForm"
 
 import LogIn from "../pages/LogIn"
 import SignUp from "../pages/SignUp"
+import SingleRecipe from "../pages/SingleRecipe"
 
 function Router() {
     return(
@@ -20,6 +21,7 @@ function Router() {
             <Route path="/add" element={<AddForm/>}/>
             <Route path="/login" element={<LogIn/>}/>
             <Route path="/signup"element={<SignUp/>}/>
+            <Route path="/recipe/:name"element={<SingleRecipe/>}/>
 
         </Routes>
         </BrowserRouter>
