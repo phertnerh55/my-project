@@ -55,7 +55,7 @@ function Nav() {
             Login
           </button>
         </Link>
-        <Link>
+        <Link to={"/signup"}>
           {" "}
           <button className="text-2xl hover:text-emerald-600 border-2 rounded-full py-2 px-5">
             Signup

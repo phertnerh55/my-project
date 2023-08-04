@@ -74,16 +74,18 @@ useEffect(()=>{
     <div>
       <div className="flex justify-end bg-[url(assets/images/bg-signup.jpg)] bg-center bg-origin-border bg-cover h-[145vh]">
         <div className="mx-7 w-[40%]">
-          <h1 className="font-bold text-6xl container my-[1em]">
+          <h1 className="font-bold text-6xl container my-[1em] text-green-800">
             Create an account
           </h1>
+          
 {signupError!==""&&(
-    <p className="text-red-500">{signupError}</p>
+    <p className="text-red-500 text-center">{signupError}</p>
+    
 )}
           <div className="justify-between my-[2em] gap-2">
             <div className="w=[100%]">
               {formErrors.firstName && (
-                <p className="text-red-500 text-center">
+                <p className="text-red-500 text-center ">
                   {formErrors.firstName}
                 </p>
               )}
@@ -91,7 +93,7 @@ useEffect(()=>{
                 <input
                   type="text"
                   placeholder="First Name"
-                  className="outline-0 p-7 bg-transparent"
+                  className="outline-0 p-7 bg-transparent rounded-full w-[100%]"
                   name="firstName"
                   onChange={(e) => handleChange(e)}
                   value={formData.firstName}
@@ -109,7 +111,7 @@ useEffect(()=>{
                 <input
                   type="text"
                   placeholder="Last Name"
-                  className="outline-0 p-7 bg-transparent"
+                  className="outline-0 p-7 bg-transparent rounded-full w-[100%]"
                   name="lastName"
                   onChange={(e) => handleChange(e)}
                   value={formData.lastName}
@@ -127,7 +129,7 @@ useEffect(()=>{
                 <input
                   type="text"
                   placeholder="Email Address"
-                  className="outline-0 p-7 bg-transparent"
+                  className="outline-0 p-7 bg-transparent rounded-full w-[100%]"
                   name="emailAddress"
                   onChange={(e)=>handleChange(e)}
                   value={formData.emailAddress}
@@ -145,7 +147,7 @@ useEffect(()=>{
               <input
                 type="text"
                 placeholder="Phone Number"
-                className="outline-0 p-7 bg-transparent"
+                className="outline-0 p-7 bg-transparent rounded-full w-[100%]"
                 name="phoneNumber"
                 onChange={(e)=>handleChange(e)}
                 value={formData.phoneNumber}
@@ -159,17 +161,17 @@ useEffect(()=>{
                    {formErrors.password}
                  </p>  
                 )}
-            <div className="rounded-full shadow border-gray-300 border-2 my-[2em]">
+            <div className="rounded-full shadow border-gray-300 border-2 my-[2em] flex items-center justify-between">
               <input
-                type="text"
+                type={show?"password":"text"}
                 placeholder="Password"
-                className="outline-0 p-7 bg-transparent"
+                className="outline-0 p-7 bg-transparent rounded-full w-[100%]"
                 name="password"
                 onChange={(e)=>handleChange(e)}
                 value={formData.password}
 
               />
-              <div className="flex justify-end"
+              <div className="flex justify-end mx-2"
               onClick={()=>setShow((prev)=>!prev)}>
                 { show?<AiFillEye size={25} />:<AiFillEyeInvisible size={25} />}
               </div>
@@ -199,10 +201,10 @@ useEffect(()=>{
             </div> */}
           </div>
           <div>
-            <button className="p-7 bg-green-500 text-white rounded-full shadow font-bold text-center text-2xl my-[1em] w-[100%] mx-auto"
+          <Link to={"/login"}>  <button className="p-7 bg-green-500 text-white rounded-full shadow font-bold text-center text-2xl my-[1em] w-[100%] mx-auto"
             onClick={(e)=>handleSignUp(e)}>
               Create Account
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>
