@@ -31,7 +31,7 @@ function HeroCart() {
             <div className="flex justify-around items-center my-[1em]">
               <div className="w-[300px] h-[300px]">
                 <img
-                  src={` /src/assets/images/${item.recipeImage}`}
+                  src={`${item.recipeImage}`}
                   alt=""
                   className="w-[100%] h-[100%]"
                 />
