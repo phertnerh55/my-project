@@ -1,25 +1,57 @@
 import{AiFillEye} from "react-icons/ai";
 import{AiFillEyeInvisible} from "react-icons/ai";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {dp, app} from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { useState , useEffect, useRef} from "react";
+import { Link , useNavigate} from "react-router-dom";
  function LogHero() { 
+  useEffect(()=>{
+    email.Ref.current.focus()
+  },[])
+
+  const auth=getAuth(app);
+
   const [show,setShow]=useState(false);
+  const [loginError ,setloginError]=useState("");
   const [formData,setFormData]=useState({});
   const [formErrors,setFormErrors]=useState({});
+  const navigate=useNavigate();
+  const emailRef=useRef()
   const handleChange=(e)=>{
     setFormData({...formData,[e.target.name]:e.target.value});
   };
-  function handleLogIn(e){
+  async function handleLogIn(e){
     e.preventDefault();
     const errors={};
     (formData.emailAddress===undefined||formData.emailAddress==="")&&
     (errors.emailAddress="Please Enter Your Email Address");
     (formData.password===undefined||formData.password==="")&&
     (errors.password="Please Enter Your Password");
-    setFormErrors(errors)
-    console.log(errors);
+    setFormErrors(errors);
     console.log(formData);
-  }
+    createUserWithEmailAndPassword (auth, formData.emailAddress, formData.password)
+  .then((userCredential) => {
+
+    const user=userCredential.user;
+    console.log(user.email);
+    setFormData({
+      emailAddress:"",
+      password:"",
+    })
+    setloginError("")
+    navigate("/")
+  })
+
+  .catch ((error) =>{
+    const errorMessage = error.message.substring(22,error.message.length -2)
+    setloginError(errorMessage);
+  });
+  console.log(errors);
+
+
+  await addDoc(collection(db, "user"), formData);
+}
   return (
     <>
       
@@ -48,7 +80,8 @@ import { Link } from "react-router-dom";
                 {formErrors.password &&(
                   <p className="text-red-500 text-center">{formErrors.password}</p>
                   )}
-              <div className="rounded-full shadow border-black border-2 w-[40%] container mx-40 my-[2em]">
+                
+              <div className="rounded-full flex it shadow border-black border-2 w-[40%] container mx-40 my-[2em] px-4  ">
                 <input
                   type="password"
                   placeholder="password"
@@ -56,10 +89,11 @@ import { Link } from "react-router-dom";
                   name="password"
                   onChange={(e)=>handleChange(e)}
                 />
-                <div className="flex justify-end"
+                <div
                 onClick={()=>setShow((prev)=>!prev)}>
                 { show ?<AiFillEye size={20}/>:<AiFillEyeInvisible size={20}/>}</div>
                 </div>
+              
                 </div>
               
             {/* </form> */}
@@ -73,4 +107,5 @@ import { Link } from "react-router-dom";
     </>
   );
 }
+ 
 export default LogHero;
