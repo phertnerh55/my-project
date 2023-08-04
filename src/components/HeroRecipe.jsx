@@ -113,7 +113,8 @@ function HeroRecipe() {
                     </div>
 
                     <div className="flex justify-center">
-                      <Link to={`/recipe/${item.foodName.toLowerCase().split(" ").join("-")}`}><button className="bg-green-600 text-white p-2 rounded  w-[70%] font-bold text-center text-2xl hover:text-green-800 my-2">
+                      <Link to={`/recipe/${item.foodName.toLowerCase().split(" ").join("-")}`}>
+                        <button className="bg-green-600 text-white p-2 rounded  w-[200px] font-bold text-center text-2xl hover:text-green-800 my-2">
                         View recipe
                       </button></Link>
                     </div>

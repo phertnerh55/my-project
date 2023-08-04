@@ -4,6 +4,9 @@ import pancake from "../assets/images/pancakes.jpg";
 import breakfast from "../assets/images/breakfast.png";
 import lunch from "../assets/images/lunch.png";
 import dinner from "../assets/images/dinner.png";
+import vegsoup from "../assets/images/vegsoup.jpg";
+import eggplant from "../assets/images/eggplant.jpg";
+import eggscramble from "../assets/images/eggscramble.jpg";
 import delivery from "../assets/images/delivery.jpg";
 import { BsSearch } from "react-icons/bs";
 import { VscFilter } from "react-icons/vsc";
@@ -16,6 +19,7 @@ import { useState } from "react";
 import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineStar } from "react-icons/ai";
 import { BsCurrencyDollar } from "react-icons/bs";
+import { Link } from "react-router-dom";
 function ContentHome() {
   const { recipe, setRecipe } = useContext(StateContext);
   //   const [searchTerm, setSearchTerm] = useState("");
@@ -79,108 +83,114 @@ function ContentHome() {
         {/* <div className="flex justify-center mb-2"></div> */}
       </div>
       <div className="container mx-auto border-2 shadow-[0_0_12px_rgba(211,211,211)] rounded border-gray-300  mb-[2em] p-2 ">
-        <h2 className="text-3xl text-center text-green-800 my-2 font-bold">Latest Recipes</h2>
+        <h2 className="text-3xl text-center text-green-800 my-2 font-bold">
+          Latest Recipes
+        </h2>
         <div className="grid grid-cols-3">
-        <div className=" mx-auto my-[2em]">
-          <div className="border-black shadow rounded p-1 ">
-            <div className="w-[400px] h-[200px] ">
-              <img
-                src=""
-                alt=""
-                className="w-[100%] h-[100%] object-fill"
-              />
+          <div className=" mx-auto my-[2em]">
+            <div className="border-black shadow rounded p-1 ">
+              <div className="w-[400px] h-[200px] ">
+                <img
+                  src={eggplant}
+                  alt=""
+                  className="w-[100%] h-[100%] object-fill"
+                />
+              </div>
+              <h2 className="font-bold text-2xl text-green-800 my-2em">
+                Eggplant Parmesan
+              </h2>
+
+              <div>
+                <div className="  w-[60%] ">
+                  <div className="flex gap-5 my-2 items-center">
+                    <BiTimeFive size={25} />
+                    <p className="">Dinner</p>
+                  </div>
+                  <div className="flex  my-2 gap-5 items-center">
+                    <AiOutlineStar size={25} />
+
+                    <p className="">Diabetes</p>
+                  </div>
+                  <div className="flex  my-2 gap-5 items-center">
+                    <BsCurrencyDollar size={25} />
+                    <p className="">Ksh 700</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h2 className="font-bold text-2xl text-green-800 my-2em">
-              {}
-            </h2>
-            <p className=""></p>
+          </div>
+          <div className=" mx-auto my-[2em]">
+            <div className="border-black shadow rounded p-1 ">
+              <div className="w-[400px] h-[200px] ">
+                <img
+                  src={eggscramble}
+                  alt=""
+                  className="w-[100%] h-[100%] object-fill"
+                />
+              </div>
+              <h2 className="font-bold text-2xl text-green-800 my-2em">
+                Egg White Veggie scremble
+              </h2>
 
-            <div>
-              <div className="  w-[60%] ">
-                <div className="flex gap-5 my-2 items-center">
-                  <BiTimeFive size={25} />
-                  <p className=""></p>
-                </div>
-                <div className="flex  my-2 gap-5 items-center">
-                  <AiOutlineStar size={25} />
+              <div>
+                <div className="  w-[60%] ">
+                  <div className="flex gap-5 my-2 items-center">
+                    <BiTimeFive size={25} />
+                    <p className="">Breakfast</p>
+                  </div>
+                  <div className="flex  my-2 gap-5 items-center">
+                    <AiOutlineStar size={25} />
 
-                  <p className=""></p>
+                    <p className="">Hypertension</p>
+                  </div>
+                  <div className="flex  my-2 gap-5 items-center">
+                    <BsCurrencyDollar size={25} />
+                    <p className="">Ksh 600</p>
+                  </div>
                 </div>
-                <div className="flex  my-2 gap-5 items-center">
-                  <BsCurrencyDollar size={25} />
-                  <p className=""></p>
+              </div>
+            </div>
+          </div>
+          <div className=" mx-auto my-[2em]">
+            <div className="border-black shadow rounded p-1 ">
+              <div className="w-[400px] h-[200px] ">
+                <img
+                  src={vegsoup}
+                  alt=""
+                  className="w-[100%] h-[100%] object-fill"
+                />
+              </div>
+              <h2 className="font-bold text-2xl text-green-800 my-2em">Vegetable and Bean Soup
+
+</h2>
+              
+
+              <div>
+                <div className="  w-[60%] ">
+                  <div className="flex gap-5 my-2 items-center">
+                    <BiTimeFive size={25} />
+                    <p className="">Lunch</p>
+                  </div>
+                  <div className="flex  my-2 gap-5 items-center">
+                    <AiOutlineStar size={25} />
+
+                    <p className="">Hypertention </p>
+                  </div>
+                  <div className="flex  my-2 gap-5 items-center">
+                    <BsCurrencyDollar size={25} />
+                    <p className="">Ksh 600</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className=" mx-auto my-[2em]">
-          <div className="border-black shadow rounded p-1 ">
-            <div className="w-[400px] h-[200px] ">
-              <img
-                src=""
-                alt=""
-                className="w-[100%] h-[100%] object-fill"
-              />
-            </div>
-            <h2 className="font-bold text-2xl text-green-800 my-2em">
-              {}
-            </h2>
-            <p className=""></p>
-
-            <div>
-              <div className="  w-[60%] ">
-                <div className="flex gap-5 my-2 items-center">
-                  <BiTimeFive size={25} />
-                  <p className=""></p>
-                </div>
-                <div className="flex  my-2 gap-5 items-center">
-                  <AiOutlineStar size={25} />
-
-                  <p className=""></p>
-                </div>
-                <div className="flex  my-2 gap-5 items-center">
-                  <BsCurrencyDollar size={25} />
-                  <p className=""></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className=" mx-auto my-[2em]">
-          <div className="border-black shadow rounded p-1 ">
-            <div className="w-[400px] h-[200px] ">
-              <img
-                src=""
-                alt=""
-                className="w-[100%] h-[100%] object-fill"
-              />
-            </div>
-            <h2 className="font-bold text-2xl text-green-800 my-2em">
-              {}
-            </h2>
-            <p className=""></p>
-
-            <div>
-              <div className="  w-[60%] ">
-                <div className="flex gap-5 my-2 items-center">
-                  <BiTimeFive size={25} />
-                  <p className=""></p>
-                </div>
-                <div className="flex  my-2 gap-5 items-center">
-                  <AiOutlineStar size={25} />
-
-                  <p className=""></p>
-                </div>
-                <div className="flex  my-2 gap-5 items-center">
-                  <BsCurrencyDollar size={25} />
-                  <p className=""></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
+        <div className="flex justify-center w-[400px] mx-auto">
+                      <Link to={"/recipe"}>
+                        <button className="bg-green-600 text-white p-2 rounded  w-[200px] font-bold text-center text-2xl hover:text-green-800 my-2">
+                        View More recipes
+                      </button></Link>
+                    </div>
       </div>
 
       <div className="container mx-auto border-2 shadow-[0_0_12px_rgba(211,211,211)] rounded border-gray-300 flex mb-[2em] items-center">
