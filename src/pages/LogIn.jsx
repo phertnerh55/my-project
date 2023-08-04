@@ -4,9 +4,9 @@ import Footer from "../components/Footer";
 function LogIn(){
     return(
         <div>
-            {/* <Nav/> */}
+            <Nav/>
             <LogHero/>
-            {/* <Footer/> */}
+            <Footer/>
         </div>
     )
 }

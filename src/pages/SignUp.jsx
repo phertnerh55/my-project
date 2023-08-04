@@ -5,9 +5,9 @@ import Footer from "../components/Footer";
 function SignUp(){
     return(
     <div>
-        {/* <Nav/> */}
+        <Nav/>
         <SignHero/>
-        {/* <Footer/> */}
+        <Footer/>
     </div>
     )
 }
